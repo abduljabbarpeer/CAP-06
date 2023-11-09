@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .products-container {
+        margin: 20px;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .product-item {
+        border: 1px solid black;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product-item > img {
+        height: 200px;
+      }
+    </style>
+    <title>E Commerce built with JS DOM</title>
+  </head>
+  <body>
+    <div id="root">
+      <!-- productsContainerElement -->
+    </div>
+  </body>
+  <script>
+    var products = [
+      {
+        id: 1,
+        imgSrc: "https://placehold.co/400",
+        name: "twills jeans",
+        price: 424,
+        rating: 4.2,
+      },
+      {
+        id: 2,
+        imgSrc: "https://placehold.co/400",
+        name: "Some other random shirt",
+        price: 500,
+        rating: 3.8,
+      },
+      {
+        id: 3,
+        imgSrc: "https://placehold.co/400",
+        name: "wrogn shirt",
+        price: 1000,
+        rating: 4.5,
+      },
+      {
+        id: 4,
+        imgSrc: "https://placehold.co/400",
+        name: "pepe jeans shirt",
+        price: 1800,
+        rating: 4.8,
+      },
+      {
+        id: 5,
+        imgSrc: "https://placehold.co/400",
+        name: "peter england shirt",
+        price: 2500,
+        rating: 2.9,
+      },
+    ];
+
+    var productsContainerElement = document.createElement("div");
+    productsContainerElement.className = "products-container";
+
+    products.forEach(function (currentProduct) {
+      // Product Item
+      var productItemElement = document.createElement("div");
+      productItemElement.className = "product-item";
+
+      // Image in product item
+      var productImageElement = document.createElement("img");
+      productImageElement.src = currentProduct.imgSrc;
+      productImageElement.alt = currentProduct.name;
+
+      // Product Title Element
+      var productNameElement = document.createElement("p");
+      productNameElement.textContent = currentProduct.name;
+
+      // Product Price Element
+      var productPriceElement = document.createElement("p");
+      productPriceElement.textContent = "₹ " + currentProduct.price + " /-";
+
+      // Product Rating Element
+      var productRatingElement = document.createElement("p");
+      productRatingElement.textContent =
+        "Rating : " + currentProduct.rating + " / 5";
+
+      productItemElement.append(
+        productImageElement,
+        productNameElement,
+        productPriceElement,
+        productRatingElement
+      );
+
+      productsContainerElement.append(productItemElement);
+    });
+
+    var root = document.getElementById("root");
+    root.append(productsContainerElement);
+  </script>
+</html>
